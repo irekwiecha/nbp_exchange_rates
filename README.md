@@ -29,8 +29,8 @@
 
 ## Project Status
 Project is: _in progress_  - first mini project 
-Currently supported currencies:
-- USD, EUR, CHF
+- Currently supported currencies:
+    - USD, EUR, CHF
 
 ## Room for Improvement
 To do:
