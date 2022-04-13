@@ -31,6 +31,7 @@
 Project is: _in progress_  - first mini project 
 - Currently supported currencies:
     - USD, EUR, CHF
+    - added CAD, GBP, CZK, CNY, HUF, JPY
 
 ## Room for Improvement
 To do:

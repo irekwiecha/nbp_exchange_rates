@@ -14,8 +14,7 @@ class MyDateEntry(DateEntry):
         # add black border around drop-down calendar
         self._top_cal.configure(bg='black', bd=1)
         # add label displaying today's date below
-        tk.Label(self._top_cal, bg='gray90', anchor='w',
-                 text='Today: %s' % date.today().strftime('%Y-%m-%d')).pack(fill='x')
+        tk.Label(self._top_cal, bg='gray90', anchor='w', text='Today: %s' % date.today().strftime('%Y-%m-%d')).pack(fill='x')
 
 
 def clear():
@@ -43,11 +42,11 @@ def frame_result():
     date = pick_date.get()
     code = currency.get()
     rate, new_date = exchange_rate(code, date)
-    result.insert(0, f"1 {code} on {new_date} = {rate} PLN")
+    multiple = 100 if code in ['HUF', 'JPY'] else 1
+    result.insert(0, f"{multiple} {code} on {new_date} = {rate * multiple} PLN")
     result.config(state='readonly')
     if new_date != date:
-        info_text.config(
-            text="INFO: No data for the given date.\nPrevious business day data was returned.")
+        info_text.config(text="INFO: No data for the given date.\nPrevious business day data was returned.")
     else:
         info_text.config(text="")
 
@@ -95,14 +94,13 @@ currency_text = ttk.Label(root, text="Please select a currency:")
 currency_text.pack()
 currency_text.place(x=10, y=50)
 
-currency_list = ['USD', 'EUR', 'CHF']
+currency_list = ['USD', 'EUR', 'CHF', 'CAD', 'GBP', 'CZK', 'CNY', 'HUF', 'JPY']
 currency = ttk.Combobox(root, values=currency_list, width=12)
 currency.set("USD")
 currency.pack()
 currency.place(x=210, y=50)
 
-submit_button = ttk.Button(root, text="Submit", command=lambda: [
-                           clear(), frame_result()], width=10)
+submit_button = ttk.Button(root, text="Submit", command=lambda: [clear(), frame_result()], width=10)
 submit_button.pack()
 submit_button.place(x=123, y=90)
 
